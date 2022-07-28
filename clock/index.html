@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Digital Analog Clock</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="all">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+<header>
+    <div id="headerbox"><h1>A Digital Analog Clock</h1></div>
+</header>
+<main class="main">
+    <section>
+        <article>
+            <div class="clockbox">
+                <svg id="clock" xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+                    <g id="face">
+                        <circle id="faceCircle" class="circle" cx="300" cy="300" r="253.9"/>
+                        <path class="hour-marks" d="M300.5 94V61M506 300.5h32M300.5 506v33M94 300.5H60M411.3 107.8l7.9-13.8M493 190.2l13-7.4M492.1 411.4l16.5 9.5M411 492.3l8.9 15.3M189 492.3l-9.2 15.9M107.7 411L93 419.5M107.5 189.3l-17.1-9.9M188.1 108.2l-9-15.6"/>
+                        <circle class="mid-circle" cx="300" cy="300" r="16.2"/>
+                    </g>
+                    <g id="hour">
+                        <path class="hour-arm" d="M300.5 298V142"/>
+                        <circle class="sizing-box" cx="300" cy="300" r="253.9"/>
+                    </g>
+                    <g id="minute">
+                        <path class="minute-arm" d="M300.5 298V67"/>
+                        <circle class="sizing-box" cx="300" cy="300" r="253.9"/>
+                    </g>
+                    <g id="second">
+                        <path class="second-arm" d="M300.5 350V55"/>
+                        <circle class="sizing-box" cx="300" cy="300" r="253.9"/>
+                    </g>
+                </svg>
+            </div><!-- .clockbox -->
+        </article>
+        <article id="digitalDisplay">
+            <div>
+                <p class="digitalText">Current Time: </p>
+                <p class="digitalText" id="timeText">00:00 am</p>
+            </div>
+        </article>
+    </section>
+    <section id="leftbar" class="buttonbar">
+        <button onclick="leftBar.toggle();" class="arrow">&larr;</button>
+        <h2>Tick Style</h2>
+        <button onclick="clock1.tickAction = 'tick'; clock1.snapToNow();" class="functionbutton">Tick</button>
+        <button onclick="clock1.tickAction = 'sweep'; clock1.snapToNow();" class="functionbutton">Sweep</button>
+        <button onclick="clock1.tickAction = 'snap'; clock1.snapToNow();" class="functionbutton">Snap</button>
+        <button onclick="clock1.tickAction = 'random'" class="functionbutton">Random</button>
+    </section>
+    <section id="rightbar" class="buttonbar">
+        <button onclick="rightBar.toggle();" class="arrow">&rarr;</button>
+        <h2>Display Toggles</h2>
+        <!-- <button onclick="popeyeToggle();" class="functionbutton">Popeye</button> There used to be a Pop-Eye background, but I disabled this when uploading it publicly to avoid violating any copyright -->
+        <button onclick="digitalText.toggleDisplay();" class="functionbutton">Digital Time</button>
+        <button onclick="digitalText.twentyFour = !digitalText.twentyFour; clock1.updateDigitalTime();" class="functionbutton">24-hour</button>
+        <button onclick="toggleHideText();" class="functionbutton">Hide Text</button>
+        <button onclick="colourSetOpen();" class="functionbutton">Set Colours</button>
+    </section>
+    <section class="modal" id="colourset">
+        <button onclick="colourSetClose();" class="arrow">&times;</button>
+        <h2>Set Colours</h2>
+        <p>Foreground:  <input type="text" id="foregroundcolour" class="fg" value="black" oninput="onInputHandler(this)"> 
+                        <input type="color" id="foregroundpicker" class="fg" value="#000000" oninput="onInputHandler(this)"></p>
+        <p>Background:  <input type="text" id="backgroundcolour" class="bg" value="white" oninput="onInputHandler(this)"> 
+                        <input type="color" id="backgroundpicker" class="bg" value="#ffffff" oninput="onInputHandler(this)"></p>
+        <button onclick="setColourButton();" class="functionbutton">Set Colours</button>
+        <button onclick="randomColour();" class="functionbutton">Random</button>
+        <button onclick="colourReset();" class="functionbutton">Reset</button>
+    </section>
+</main>
+</body>
+
+</html>

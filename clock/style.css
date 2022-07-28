@@ -1,0 +1,260 @@
+/*-------------------General Layout 
+-------------------------------------------------------*/
+body {
+    background: white;
+    color: black;
+    transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.main {  
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    position: relative;
+    flex-direction: row;
+}
+
+footer {
+    margin-top: 25px;
+    text-align: center;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2.5em;
+}
+
+a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+a:hover {
+    font-weight: bold;
+}
+
+button {
+    font-size: 1.5em;
+    border: 2px solid black;
+    background-color: white;
+    margin: 5px;
+    width: 150px;
+    transition: width 0.5s ease-in-out, color 0.5s ease-in-out, background-color 0.5s ease-in-out, border-color 0.5s ease-in-out;
+}
+
+.buttonreduced {
+    width: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+button:active {
+    border: 2px solid grey;
+    background: black;
+    color: white;
+}
+
+/*-------------------Clock Setup
+---------------------------------------------------------*/
+
+.clockbox,
+#clock {
+    /* Need max-width so popeye doesn't balloon up too large based on the width */
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.circle {
+    fill: none;
+    stroke: #000;
+    stroke-width: 9;
+    stroke-miterlimit: 10;
+}
+
+.mid-circle {
+    fill: #000;
+}
+.hour-marks {
+    fill: none;
+    stroke: #000;
+    stroke-width: 9;
+    stroke-miterlimit: 10;
+}
+
+.hour-arm {
+    fill: none;
+    stroke: #000;
+    stroke-width: 17;
+    stroke-miterlimit: 10;
+}
+
+.minute-arm {
+    fill: none;
+    stroke: #000;
+    stroke-width: 11;
+    stroke-miterlimit: 10;
+}
+
+.second-arm {
+    fill: none;
+    stroke: #000;
+    stroke-width: 4;
+    stroke-miterlimit: 10;
+}
+
+.sizing-box {
+    /* Transparent box ensuring arms center properly. */
+    fill: none;
+}
+
+/* Make all arms rotate around the same center point. */
+/* Optional: Use transition for animation. */
+#hour,
+#minute,
+#second {
+    transform-origin: 300px 300px;
+    transition: transform .5s ease-in-out;
+}
+
+path, circle {
+    transition: stroke 0.5s ease-in-out, fill 0.5s ease-in-out;
+}
+
+/*----------------JS Styles for Clock
+-----------------------------------------------------------*/
+
+.popeyed {
+    /* The >100% background is probably not ideal... saves re-editing the image though! :3 */
+    background: url("popeye-alphachannel-desaturated.png") no-repeat fixed;
+    background-size: 120%;
+    background-position: center center;
+    background-attachment: local;
+}
+
+
+/*------------Digital Display properties
+-----------------------------------------------------------*/
+
+#digitalDisplay {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    width: 400px;
+    margin: 10px auto;
+    border: 2px solid black;
+    transition: border-color 0.5s ease-in-out;
+}
+
+.noBorder {
+    border-color: white !important;
+}
+
+.digitalText {
+    display: inline-block;
+    font-size: 1.5em;
+    margin: 10px 0;
+    font-weight: bold;
+    transition: color 0.5s ease-in-out
+}
+
+#digitalDisplay div {
+    margin: 0;
+}
+
+.digitalTextHidden {
+    color: white;           /* Note that the text needs to be the same color as the background for this to work */
+}
+
+
+/*---------------Button Bars
+------------------------------------------------*/
+
+.buttonbar {
+    width: 200px;
+    position: fixed;
+    border: 2px solid black;
+    padding: 15px 20px;
+    background: white;
+    transition: width 0.5s ease-in-out, padding 0.5s, background-color 0.5s ease-in-out, color 0.25s ease-in-out, border-color 0.5s ease-in-out;
+    top: 25vh;
+    overflow: hidden;
+    word-wrap: none;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+}
+
+.leftbar h2, .rightbar h2 {
+    margin-top: 0px;
+}
+
+#leftbar {
+    left: 10px;
+    text-align: left;
+}
+
+#rightbar {
+    right: 10px;
+    text-align: right;
+}
+
+.arrow {
+    position: absolute;
+    top: 10px;
+    border: 1px solid black;
+    font-size: 1.5em;
+    padding: 4px;
+    margin: 0;
+    width: 35px;
+}
+
+#leftbar .arrow {
+    right: 10px;
+}
+
+#rightbar .arrow {
+    left: 10px;
+}
+
+.barclosed {
+    width: 25px;
+    min-width: 0;
+    padding-left: 10px;
+}
+
+/* ----------------- Colour-Set Modal
+-----------------------------------------------------------*/
+.modal {
+    display: none;  /* Off by default */
+    position: fixed;
+    z-index: 1;
+    left: auto;
+    top: 25%;
+    overflow: auto;
+    color: black;
+    border: 2px solid;
+    background: white 80%;
+    padding: 20px;
+}
+
+.modal p {
+    font-size: 1.5em;
+}
+
+.modal h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+}
+
+.modal .arrow {
+    top: 20px;
+    right: 20px;
+}
+
+.modal input {
+    font-size: inherit;
+}
+
+.modal-open {
+    display: block;
+}
